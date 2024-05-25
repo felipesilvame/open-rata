@@ -135,7 +135,9 @@ class ScrapHites implements ShouldQueue
                         //throw $th;
                     }
                     try {
-                        $discount = round(($p_normal - $p_oferta) / $p_normal * 100.0);
+                        if ($p_normal && $p_oferta) {
+                            $discount = round(($p_normal - $p_oferta) / $p_normal * 100.0);
+                        }
                     } catch (\Throwable $th) {
                         //throw $th;
                     }

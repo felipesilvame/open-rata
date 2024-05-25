@@ -114,7 +114,7 @@ class ScrapLider implements ShouldQueue
                 $total_pages = ArrHelper::get($json, 'nbPages', 0);
                 $page = ArrHelper::get($json, 'page', 0);
                 if (isset($json['data']) && isset($json['data']['products'])) {
-                    $data->concat($this->parseData($json['data']['products']));
+                    $data = $data->concat($this->parseData($json['data']['products']));
                 }
 
                 for ($i = 2; $i < $total_pages; $i++) { 
@@ -129,7 +129,7 @@ class ScrapLider implements ShouldQueue
                         }
                         $json = $client->getResponse()->toArray();
                         if (isset($json['data']) && isset($json['data']['products'])) {
-                            $data->concat($this->parseData($json['data']['products']));
+                            $data = $data->concat($this->parseData($json['data']['products']));
                         }
                     } catch (\Throwable $th) {
                         break; // si hay error obteniendo la pagina, se termina el ciclo
